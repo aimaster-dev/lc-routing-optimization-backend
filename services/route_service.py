@@ -24,11 +24,10 @@ def get_route_comparison(route_number: str) -> Dict[str, List[Dict[str, Any]]]:
             reader = csv.DictReader(csv_file)
             for row in reader:
                 if row.get("Route_ID") == route_number:
-                    # print(123123123)
                     route_optimal_data = ast.literal_eval(row.get("Route Optimal", ""))
                     route_manual_data = ast.literal_eval(row.get("Route Manual", ""))
                     
-                    # print("route_manual_dataasdfasdfasdf", route_manual_data)
+                    print("route_manual_dataasdfasdfasdf", route_manual_data)
                     print("route_manual_data", route_manual_data)
                     print("route_manual_data", route_manual_data[0][0])
                     print("route_optimal_data", route_optimal_data)

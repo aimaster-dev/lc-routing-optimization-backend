@@ -1,5 +1,5 @@
 import pandas as pd
-from services.route_optimizer_new import generate_route_map
+from services.route_optimizer_new_ import generate_route_map
 import shutil
 import os
 # import asyncio
@@ -56,7 +56,7 @@ async def make_data_for_download(status):
     os.makedirs("services/route_optimization_output/Sequence", exist_ok=True)
     os.makedirs("services/route_optimization_output/IND_results", exist_ok=True)
     if status == 1:
-        from services.route_optimizer_new import generate_route_map
+        from services.route_optimizer_new_ import generate_route_map
         for location_id in location_ids:
             data = await generate_route_map(location_id)
             # print(data)

@@ -31,7 +31,6 @@ async def get_route(data: RouteData):
     from services.route_optimizer_old import generate_route_map
 
     await generate_route_map(data.model_dump())
-    print("asdfasdfasdfasdf")
     manual_file_name = f"maps/manual_map.html"
     # optimal_file_name = f"maps/optimal_map_old.html"
     optimal_file_name = f"maps/optimal_map.html"
@@ -57,7 +56,7 @@ async def get_route(route_type: str, location_id: str):
     await generate_route_map(location_id)
 
     # Replace any "/" in location_id with "_" to create a safe file name.
-    safe_location_id = location_id.replace("/", "_")
+    safe_location_id = location_id.replace("/", "-")
 
     if route_type == "comparison":
         manual_file_name = f"maps/manual_map{safe_location_id}.html"
@@ -75,7 +74,7 @@ async def get_route(route_type: str, location_id: str):
             raise HTTPException(status_code=500, detail=str(e))
     
     else:
-        file_name = f"maps/{route_type}_map{safe_location_id}.html"
+        file_name = f"maps/{route_type}_map_{safe_location_id}.html"
         if not os.path.exists(file_name):
             raise HTTPException(status_code=404, detail="Route map not found.")
         try:

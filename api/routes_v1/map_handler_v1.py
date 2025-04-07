@@ -14,7 +14,7 @@ async def get_route(route_type: str, location_id: str):
     await generate_route_map(location_id)
 
     # Replace any "/" in location_id with "_" to create a safe file name.
-    safe_location_id = location_id.replace("/", "_")
+    safe_location_id = location_id.replace("/", "-")
 
     if route_type == "comparison":
         manual_file_name = f"maps/manual_map{safe_location_id}.html"
