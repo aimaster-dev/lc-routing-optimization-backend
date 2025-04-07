@@ -1,0 +1,45 @@
+Route_ID,Route_Type,Segment,Time (min),Distance (km),Service Time,PERM_NOTES,NOTE
+2226_7/30/2024-800,Optimal,Haul -> Stop 5,37.56,23.25,2.6886717061345147,,
+2226_7/30/2024-800,Optimal,Stop 5 -> LF,8.67,5.78,0.0,,
+2226_7/30/2024-800,Optimal,LF -> Stop 5,11.35,5.78,2.6886717061345147,,
+2226_7/30/2024-800,Optimal,Stop 5 -> Stop 1,7.82,0.0,7.82296049515646,,
+2226_7/30/2024-800,Optimal,Stop 1 -> LF,8.67,5.78,0.0,5:00AM,"{""containerNote2"":""TRY TO GET THIS EARLY"",""containerNote3"":""*****DOOR 48*****"",""containerNote4"":""PLS HAUL BEFORE 5:00AM"",""containerNote5"":""BRIAN 678-969-6614""}"
+2226_7/30/2024-800,Optimal,LF -> Stop 1,16.49,5.78,7.82296049515646,,
+2226_7/30/2024-800,Optimal,Stop 1 -> Stop 7,6.82,0.43,6.168814424011163,5:00AM,"{""containerNote2"":""TRY TO GET THIS EARLY"",""containerNote3"":""*****DOOR 48*****"",""containerNote4"":""PLS HAUL BEFORE 5:00AM"",""containerNote5"":""BRIAN 678-969-6614""}"
+2226_7/30/2024-800,Optimal,Stop 7 -> LF,8.02,5.35,0.0,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Optimal,LF -> Stop 7,14.19,5.35,6.168814424011163,,
+2226_7/30/2024-800,Optimal,Stop 7 -> Stop 6,6.17,0.0,6.168814424011163,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Optimal,Stop 6 -> LF,8.02,5.35,0.0,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Optimal,LF -> Stop 6,14.19,5.35,6.168814424011163,,
+2226_7/30/2024-800,Optimal,Stop 6 -> Stop 3,6.17,0.0,6.168814424011163,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Optimal,Stop 3 -> LF,8.02,5.35,0.0,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Optimal,LF -> Stop 3,14.19,5.35,6.168814424011163,,
+2226_7/30/2024-800,Optimal,Stop 3 -> Stop 4,6.01,0.33,5.518188805835789,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Optimal,Stop 4 -> LF,8.32,5.55,0.0,,"{""containerNote1"":""UWL-B""}"
+2226_7/30/2024-800,Optimal,LF -> Stop 4,13.84,5.55,5.518188805835789,,
+2226_7/30/2024-800,Optimal,Stop 4 -> Stop 2,2.19,0.25,1.8183534902188392,,"{""containerNote1"":""UWL-B""}"
+2226_7/30/2024-800,Optimal,Stop 2 -> LF,8.52,5.68,0.0,,
+2226_7/30/2024-800,Optimal,LF -> Stop 2,10.34,5.68,1.8183534902188392,,
+2226_7/30/2024-800,Optimal,Stop 2 -> Haul,34.9,23.27,0.0,,
+2226_7/30/2024-800,Manual,Haul -> Stop 1,42.69,23.25,7.82296049515646,,
+2226_7/30/2024-800,Manual,Stop 1 -> LF,8.67,5.78,0.0,5:00AM,"{""containerNote2"":""TRY TO GET THIS EARLY"",""containerNote3"":""*****DOOR 48*****"",""containerNote4"":""PLS HAUL BEFORE 5:00AM"",""containerNote5"":""BRIAN 678-969-6614""}"
+2226_7/30/2024-800,Manual,LF -> Stop 1,16.49,5.78,7.82296049515646,,
+2226_7/30/2024-800,Manual,Stop 1 -> Stop 2,2.52,0.47,1.8183534902188392,5:00AM,"{""containerNote2"":""TRY TO GET THIS EARLY"",""containerNote3"":""*****DOOR 48*****"",""containerNote4"":""PLS HAUL BEFORE 5:00AM"",""containerNote5"":""BRIAN 678-969-6614""}"
+2226_7/30/2024-800,Manual,Stop 2 -> LF,8.52,5.68,0.0,,
+2226_7/30/2024-800,Manual,LF -> Stop 2,10.34,5.68,1.8183534902188392,,
+2226_7/30/2024-800,Manual,Stop 2 -> Stop 3,7.03,0.57,6.168814424011163,,
+2226_7/30/2024-800,Manual,Stop 3 -> LF,8.02,5.35,0.0,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Manual,LF -> Stop 3,14.19,5.35,6.168814424011163,,
+2226_7/30/2024-800,Manual,Stop 3 -> Stop 4,6.01,0.33,5.518188805835789,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Manual,Stop 4 -> LF,8.32,5.55,0.0,,"{""containerNote1"":""UWL-B""}"
+2226_7/30/2024-800,Manual,LF -> Stop 4,13.84,5.55,5.518188805835789,,
+2226_7/30/2024-800,Manual,Stop 4 -> Stop 5,3.19,0.33,2.6886717061345147,,"{""containerNote1"":""UWL-B""}"
+2226_7/30/2024-800,Manual,Stop 5 -> LF,8.67,5.78,0.0,,
+2226_7/30/2024-800,Manual,LF -> Stop 5,11.35,5.78,2.6886717061345147,,
+2226_7/30/2024-800,Manual,Stop 5 -> Stop 6,6.82,0.43,6.168814424011163,,
+2226_7/30/2024-800,Manual,Stop 6 -> LF,8.02,5.35,0.0,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Manual,LF -> Stop 6,14.19,5.35,6.168814424011163,,
+2226_7/30/2024-800,Manual,Stop 6 -> Stop 7,6.17,0.0,6.168814424011163,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Manual,Stop 7 -> LF,8.02,5.35,0.0,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
+2226_7/30/2024-800,Manual,LF -> Stop 7,14.19,5.35,6.168814424011163,,
+2226_7/30/2024-800,Manual,Stop 7 -> Haul,35.51,23.67,0.0,,"{""containerNote1"":""**MUST STOP IN/OUT GUARD**""}"
