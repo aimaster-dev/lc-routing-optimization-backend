@@ -602,15 +602,19 @@ async def generate_route_map(location_id: str):
         next_stop = stops[next_stop_id-2] if next_stop_id else None
 
         if stop.operation_type == 'SWG':
-            current_volume += container_volume
-            print(f"[SWG] Current volume: {current_volume}/{truck_volume_capacity}")
-            if current_volume >= truck_volume_capacity:
-                # Truck full after SWG pickups
-                routeOptimizedNew.append(1)  # Landfill
-                current_volume = 0
-                # After landfill, if next stop is DRT, go to Haul first
+
+            # Add this block to check for different container sizes between SWGs
+            if next_stop and next_stop.operation_type == 'SWG':
+                if stop.container_size != next_stop.container_size:
+                    routeOptimizedNew.append(1)  # Landfill to empty full container
+                    routeOptimizedNew.append(0)  # Haul to load new size
+                    current_volume = 0
+                    continue
+                else:
+                    routeOptimizedNew.append(1)  # Landfill to empty full container
             if next_stop and next_stop.operation_type == 'DRT':
-                routeOptimizedNew.append(0)  # Haul (prepare empty)
+                routeOptimizedNew.append(1)
+                routeOptimizedNew.append(0)
         elif stop.operation_type == 'DRT':
             # After DRT pickup, go landfill
             routeOptimizedNew.append(1)  # Landfill
@@ -620,7 +624,6 @@ async def generate_route_map(location_id: str):
     # After all stops, if not at Haul (0), return to Haul
     if routeOptimizedNew[-1] != 0:
         routeOptimizedNew.append(0)
-
 
     manual_route = build_manual_route_with_real_volume(stops, original_route_info)
     location_id_for_name = location_id.replace("/", "-")
