@@ -9,6 +9,9 @@ from typing import List, Tuple, Dict
 import requests
 import asyncio
 from gurobipy import Model, GRB, quicksum
+from arcgis.gis import GIS
+from arcgis.network import analysis
+from arcgis.features import FeatureSet
 
 # Ensure folders exist
 os.makedirs("maps", exist_ok=True)
@@ -556,6 +559,48 @@ def rotate_tour_to_start(tour, start_node=0):
     rotated = tour[idx:] + tour[:idx]
     return rotated[1:]
 
+async def get_distance_time_matrix_arcgis(locations):
+    target_length = len(locations)
+    gis = GIS("https://www.arcgis.com", "Bhairavmehta", "Repsrv2025#")
+
+    location_dict = {"features": [], "geometryType": "esriGeometryPoint"}
+    destination_number = len(locations)
+
+    for location in locations:
+        # location = (lon, lat)
+        location_feature = {
+            "geometry": {"x": location[1], "y": location[0]},  # lon, lat
+            "attributes": {}
+        }
+        location_dict["features"].append(location_feature)
+
+    fs_locations = FeatureSet.from_dict(location_dict)
+
+    result = analysis.generate_origin_destination_cost_matrix(
+        origins=fs_locations,
+        destinations=fs_locations,
+        travel_mode="Driving Time",
+        number_of_destinations_to_find=destination_number
+    )
+
+    if result.solve_succeeded:
+        od_matrix_df = result.output_origin_destination_lines.sdf
+        distance_matrix = np.zeros((destination_number, destination_number))
+        time_matrix = np.zeros((destination_number, destination_number))
+        # time_matrix = [[0] * destination_number for _ in range(destination_number)]
+
+        for _, row in od_matrix_df.iterrows():
+            origin_index = int(row["OriginOID"])
+            destination_index = int(row["DestinatioOID"])
+            distance_matrix[origin_index-1][destination_index-1] = row.get("Total_Distance", 0)
+            time_matrix[origin_index-1][destination_index-1] = row["Total_Time"]
+
+        return distance_matrix, time_matrix
+    else:
+        print("❌ Failed to generate OD cost matrix.")
+        print("Message:", result.messages)
+        return None, None
+
 # === Main Async Function ===
 async def generate_route_map(location_id: str):
     df_routes = pd.read_csv('uploaded_files/transformed_data_snowflk.csv')
@@ -572,6 +617,11 @@ async def generate_route_map(location_id: str):
     service_time = sum([row['SERVICE_WINDOW_TIME'] for _, row in sorted_df.iterrows()])
 
     midpoint = (df_route.iloc[0]['HL_Lat'], df_route.iloc[0]['HL_Longt'])
+    land_fill_dic = {}
+    land_fill_name_dic = {}
+    counter = 1
+    
+    # for i in range(len(landfill))
     landfill = (df_route.iloc[0]['DF_Lat'], df_route.iloc[0]['DF_Longt'])
     locations = [midpoint, landfill] + service_coords
 
@@ -593,8 +643,9 @@ async def generate_route_map(location_id: str):
     print(weight_list)
 
     route_info = {int(stop.id)-1: 1 if stop.operation_type == 'SWG' else 0 for stop in stops}
-    dist_matrix, time_matrix = calculate_distance_and_time_matrix(locations)
-
+    # dist_matrix, time_matrix = calculate_distance_and_time_matrix(locations)
+    dist_matrix, time_matrix = await get_distance_time_matrix_arcgis(locations)
+    
     swg_stops = [idx+2 for idx, stop in enumerate(stops) if stop.operation_type == 'SWG']
     drt_stops = [idx+2 for idx, stop in enumerate(stops) if stop.operation_type == 'DRT']
 
@@ -625,6 +676,7 @@ async def generate_route_map(location_id: str):
     if drt_stops:
         drt_stops.append(0)
         print("drtdrt: ", drt_stops)
+        print("timetime", time_matrix)
         drt_sequence = TSP_solver(drt_stops, time_matrix)
         drt_sequence = rotate_tour_to_start(drt_sequence)
         print("drtdrt tsp: ", drt_sequence)
