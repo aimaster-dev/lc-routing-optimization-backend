@@ -15,18 +15,24 @@ def save_file(file: UploadFile) -> str:
     return file_path
 
 def process_csv(file_path: str) -> List[Dict[str, str]]:
-    """Reads the CSV file and extracts the required columns."""
+    """Reads the CSV file and extracts unique route_number entries."""
     extracted_data = []
+    seen_routes = set()
+
     try:
         with open(file_path, mode="r", encoding="utf-8") as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
-                extracted_data.append({
-                    "customer_name": row.get("Customer Name", ""),
-                    "route_number": row.get("Route #", "") + '-' + row.get("DIVISION", ""),
-                })
+                route_number = row.get("Route #", "") + '-' + row.get("DIVISION", "")
+                if route_number not in seen_routes:
+                    seen_routes.add(route_number)
+                    extracted_data.append({
+                        "customer_name": row.get("Customer Name", ""),
+                        "route_number": route_number,
+                    })
     except Exception as e:
         raise ValueError(f"Error processing CSV file: {e}")
+        
     return extracted_data
 
 def get_details_by_route_formatted(file_name: str, route_number: str) -> List[Dict[str, str]]:

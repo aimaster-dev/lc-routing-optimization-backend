@@ -308,7 +308,6 @@ def TSP_solver(customers, cij):
         print("[Fallback] TSP failed, using simple order.")
         return customers
 
-
 def construct_sequence(arcs, customers):
     if not arcs:
         return customers
