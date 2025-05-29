@@ -38,6 +38,13 @@ The app requires two CSV files:
 
 ---
 
+## 📖 Reference
+
+For a detailed breakdown of the methodology used in route optimization, see the companion Medium article:
+👉 [Optimizing Large Container Routes with GIS, Gurobi, and Python – A Real World Guide (Part 1: CSV)](https://medium.com/@zying_ai/optimizing-large-container-routes-with-gis-gurobi-and-python-a-real-world-guide-part-1-csv-6357ea0ccd91)
+
+---
+
 ## 🛠 Future Improvements
 
 * Export of optimized routes
@@ -58,5 +65,3 @@ This project is licensed under the MIT License. See `LICENSE` file for more info
 Special thanks to the data transformation and logistics teams involved in preparing the input datasets for the routing process.
 
 ---
-
-Let me know if you'd like a version with images or example CSV format documentation included!
